@@ -21,6 +21,9 @@
         {% if group == 'morning' %}
         <option selected value="morning">Morning flagraising</option>
         {% endif %}
+        {% if group == 'totw' %}
+        <option selected value="totw">Thought of the week</option>
+        {% endif %}
     </select>
     <hr size=0 width=0%>
     {% if group == 'morning' %}
@@ -113,6 +116,25 @@
         <option value="{{ i }}">{{ i }}</option>
         {% endfor %}
     </select>
+
+    <hr size=0 width=0%>
+
+    <h4>Details: </h4>
+    <textarea rows="4" cols='40' name="details" required></textarea>
+    <br>
+
+    {% elif group == "totw" %}
+    <h4>Title: </h4>
+    <textarea rows="1" cols='40' name="title" required></textarea>
+    <br>
+
+    <h4>Date of event:</h4>
+    <input type="date" name="eventdate" required>
+    <hr size=0 width=0%>
+
+    <h4>Person who presented:</h4>
+    <textarea rows="4" cols='40' name="p_name" required></textarea>
+    <br>
 
     <hr size=0 width=0%>
 

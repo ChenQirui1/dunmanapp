@@ -231,6 +231,21 @@ def submission():
                     (title, eventdate, people, details)
                 )
                 db.commit()
+        elif group == "totw":
+            title = request.form.get("title")
+            eventdate = request.form.get("eventdate")
+            details = request.form.get("details")
+            p_name = request.form.get("p_name")
+            p_name = p_name.title()
+            db = get_db()
+            db.execute(
+                "INSERT INTO totw (title, eventdate, details, person) "
+                "VALUES (?, ?, ?, ?)",
+                (title, eventdate, details, p_name)
+            )
+            db.commit()
+            
+            
         else:
             y1 = request.form.get("y1")
             y2 = request.form.get("y2")
