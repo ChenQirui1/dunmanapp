@@ -1,7 +1,9 @@
 {% extends "testbootstrap.html" %}
 
 {% block body %}
-<link href="https://fonts.googleapis.com/css?family=EB+Garamond|PT+Sans:400,400i,700,700i&subset=latin-ext" rel="stylesheet">
+
+<link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+<!--<link href="https://fonts.googleapis.com/css?family=EB+Garamond|PT+Sans:400,400i,700,700i&subset=latin-ext" rel="stylesheet">-->
 <!-- Use any element to open the sidenav-->
 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
 <div id="main">
@@ -14,6 +16,7 @@
     <select name="group">
         <option value="competition">Competitions</option>
         <option value="announcement">Announcements</option>
+        <option value="totw">Thought Of The Week</option>
     </select>
     <input type="submit" value="Submit">
 </form>
