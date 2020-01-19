@@ -318,6 +318,25 @@ def deletion():
     else:
         return render_template("failure_delete.html", admin=current_user.admin)
 
+@app.route("/leave")
+@login_required
+def leave():
+    return render_template("leave.html", admin=current_user.admin)
+
+
+@app.route("/leaveform", methods = ["POST"])
+@login_required
+def leaveform():
+    eventdate = request.form.get("eventdate")
+    eventstart = request.form.get("eventstart")
+    eventend = request.form.get("eventend")
+    details = request.form.get("details")
+    url = "https://api.telegram.org/bot"
+    token = "1068383634:AAFdfC0w8wUFJ53POgLo-XSLE2SgqLMbv0I"
+    action = "/sendMessage?chat_id=956428669&parse_mode=Markdown"
+    contents = "&text={0} has applied for leave on {1}, from {2} to {3}. Reasons being {4}".format(current_user.email, eventdate, eventstart, eventend, details)
+    requests.get(url+token+action+contents)
+    return render_template("success.html", admin=current_user.admin)
  
 @app.route("/login")
 def login():
