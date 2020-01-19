@@ -1,25 +1,24 @@
 {% extends "testbootstrap.html" %}
 
 {% block body %}
-
+<link href="https://fonts.googleapis.com/css?family=EB+Garamond|PT+Sans:400,400i,700,700i&subset=latin-ext" rel="stylesheet">
 <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/submit.css')}}">
+
 <!--<link href="https://fonts.googleapis.com/css?family=EB+Garamond|PT+Sans:400,400i,700,700i&subset=latin-ext" rel="stylesheet">-->
 <!-- Use any element to open the sidenav-->
 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<div id="main">
-    <h1 align="center">Delete Submission</h1>
-</div>
 
-<div class='container'>
-<form action="/delete2" method="post">
-    <h4>What are you deleting from?</h4>
-    <select name="group">
+<h1 class="header">Delete an update</h1>
+
+<form action="/delete2" method="post" class="group">
+    <select class="dropdown" name="group">
         <option value="competition">Competitions</option>
         <option value="announcement">Announcements</option>
         <option value="totw">Thought Of The Week</option>
     </select>
-    <input type="submit" value="Submit">
+    <br>
+    <input class="submit" type="submit" value="Submit">
 </form>
-</div>
 
 {% endblock %}

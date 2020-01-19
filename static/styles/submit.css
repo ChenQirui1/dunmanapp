@@ -88,6 +88,16 @@
     background-color: #0c004d;
 }
 
+.time {
+    width: 140px;
+    border: none;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0px 3px 5px lightgrey;
+    padding: 10px;
+    text-align: center;
+}
+
 @media only screen and (max-width:600px) {
     .title,
     .details {
