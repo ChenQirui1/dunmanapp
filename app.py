@@ -333,9 +333,11 @@ def leaveform():
     details = request.form.get("details")
     url = "https://api.telegram.org/bot"
     token = "1068383634:AAFdfC0w8wUFJ53POgLo-XSLE2SgqLMbv0I"
-    action = "/sendMessage?chat_id=956428669&parse_mode=Markdown"
-    contents = "&text={0} has applied for leave on {1}, from {2} to {3}. Reasons being {4}".format(current_user.email, eventdate, eventstart, eventend, details)
-    requests.get(url+token+action+contents)
+    action = "/sendMessage?chat_id="
+    ids = ["833906242",  "956428669"]
+    contents = "&parse_mode=Markdown&text={0} has applied for leave on {1}, from {2} to {3}. Reasons being {4}".format(current_user.email, eventdate, eventstart, eventend, details)
+    for id in ids:
+        requests.get(url+token+action+id+contents)
     return render_template("success.html", admin=current_user.admin)
  
 @app.route("/login")
