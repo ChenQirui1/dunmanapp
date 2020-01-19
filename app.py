@@ -73,6 +73,10 @@ def index():
         return render_template("index.html", admin=current_user.admin, levels=levels, user_email=current_user.name)
     else:
         return render_template("login2.html")
+    
+@app.route('/login-pc')
+def login_pc():
+    return render_template("login-pc.html")
 
 
 @app.route("/about")
