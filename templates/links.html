@@ -3,10 +3,9 @@
 {% block body %}
 
 <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
-<div id="main">
-  <h2>Here are some links to other websites:</h2>
-</div>
-
+<link rel="stylesheet" href="{{url_for('static', filename='styles/announcements.css')}}">
+<h1 class="header">Here are some links to other school websites:</h1>
+<!--
 <table id="t01a" class="center">
   <tr>
     <th>Websites</th>
@@ -21,9 +20,32 @@
     <td><a href="https://vle.learning.moe.edu.sg/login">SLS</a></td>
   </tr>
 </table>
-<br>
-<br>
-<br>
-<br>
-
+-->
+<form action="https://dunmanhigh.moe.edu.sg/">
+    <div style="text-align:center;">
+      <button type="submit" name="id" value="DHS website" class="box">
+        <h1 class="box-title">
+            Dunman High Website
+        </h1>   
+      </button>
+    </div>
+</form>
+<form action="https://dhis.dhs.sg/">
+    <div style="text-align:center;">
+      <button type="submit" name="id" value="DHIS" class="box">
+        <h1 class="box-title">
+            DHIS
+        </h1>   
+      </button>
+    </div>
+</form>
+<form action="https://vle.learning.moe.edu.sg/login">
+    <div style="text-align:center;">
+      <button type="submit" name="id" value="SLS" class="box">
+        <h1 class="box-title">
+            Student Learning Space
+        </h1>   
+      </button>
+    </div>
+</form>
 {% endblock %}
