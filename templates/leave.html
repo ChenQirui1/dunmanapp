@@ -1,0 +1,34 @@
+{% extends "testbootstrap.html" %}
+
+{% block body %}
+<link href="https://fonts.googleapis.com/css?family=EB+Garamond|PT+Sans:400,400i,700,700i&subset=latin-ext" rel="stylesheet">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/submit.css')}}">
+
+<h1 class="header">Submit Leave Form</h1>
+
+<div class='group'>
+    <form action="/leaveform" method="post">
+
+        <h4>Date of leave</h4>
+        <input class="date" type="date" name="eventdate" required>
+        <hr size=0 width=0%>    
+
+        <h4>Start time</h4>
+        <input class="time" type="time" name="eventstart" required>
+        <hr size=0 width=0%>
+
+        <h4>End time</h4>
+        <input class="time" type="time" name="eventend" required>
+        <hr size=0 width=0%>
+
+        <h4>Details: </h4>
+        <textarea class="details" name="details" required></textarea>
+        <br>
+
+        <input class="submit" type="submit" value="Submit">
+
+    </form> 
+</div>
+
+{% endblock %}
