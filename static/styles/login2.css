@@ -4,7 +4,7 @@ h1 {
     text-align: center;
 }
 
-p{
+p {
     font-family: "Source Sans Pro";
 }
 
@@ -16,27 +16,27 @@ body {
 }
 
 #rcorners {
-  border-radius: 6vw;
-  background: #d9d9d9;
-  padding: 10px; 
-  box-shadow: 10px 10px 5px grey;
-  width: 70vw;
-  height: 50vh;
-  opacity: 0.5;
-  background-attachment: fixed;
+    border-radius: 6vw;
+    background: #d9d9d9;
+    padding: 10px;
+    box-shadow: 10px 10px 5px grey;
+    width: 70vw;
+    height: 50vh;
+    opacity: 0.5;
+    background-attachment: fixed;
 }
 
-.center{
-    text-align: center ;
+.center {
+    text-align: center;
     margin: auto;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}   
+}
 
-.login-button{
-    text-align: center ;
+.login-button {
+    text-align: center;
 }
 
 .button-text {
@@ -44,7 +44,7 @@ body {
     font-family: "Varela Round";
     font-size: 10vw;
     text-decoration: none;
-    background-color:   #002080;
+    background-color: #002080;
     color: #ffffff;
     padding: 2vw 6vw 2vw 6vw;
     border-top: 0.6vw solid #CCCCCC;
