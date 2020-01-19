@@ -1,0 +1,46 @@
+{% extends "testbootstrap.html" %}
+
+{% block body %}
+<link href="https://fonts.googleapis.com/css?family=EB+Garamond|PT+Sans:400,400i,700,700i&subset=latin-ext" rel="stylesheet">
+<!-- Use any element to open the sidenav
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+    <h1 align="center">Submit Leave Form</h1>
+</div>
+
+<div class='container'>
+<form action="/leaveform" method="post">
+
+    <h4>Date of leave</h4>
+    <input type="date" name="eventdate" required>
+    <hr size=0 width=0%>
+    
+    <style>
+        #time{
+            float: left;
+            padding-right: 2vw;
+        }
+
+        #detail-box{
+            float: bottom;
+        }
+    </style>
+    <div id="time">
+        <h4>Start time</h4>
+        <input type="time" name="eventstart" required>
+        <hr size=0 width=0%>
+    </div>
+    <div id="time">
+        <h4>End time</h4>
+        <input type="time" name="eventend" required>
+        <hr size=0 width=0%>
+    </div>
+    <div id="detail-box">
+        <h4>Details: </h4>
+        <textarea rows="4" cols='40' name="details" required></textarea>
+        <input type="submit" value="Submit">
+    </div>
+</form> 
+</div>
+
+{% endblock %}
