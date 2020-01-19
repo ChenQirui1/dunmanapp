@@ -50,6 +50,7 @@ except sqlite3.OperationalError:
     # Assume it's already been created
     pass
 
+#admin emails
 PERMS = ["ivan.ng.qifan@dhs.sg","gu.boyuan@dhs.sg","wee.jiawei.kevan@dhs.sg", "khoo.phaikchoo.carina@dhs.sg", "xun.shengdi@dhs.sg", "mathew.rithu.ann@dhs.sg", "liu.yixuan@dhs.sg", "tee.renwey@dhs.sg", "lim.valerie@dhs.sg"]
 
 # OAuth2 client setup
@@ -143,10 +144,16 @@ def announcement_details():
     connection.close()
     return render_template("announcement_details.html", admin=current_user.admin, announcement=announcement)
 
-@app.route("/links")
+@app.route("/staff")
 @login_required
-def links():
-    return render_template("links.html", admin=current_user.admin)
+def staff():
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM staff ORDER BY name ASC")
+    people = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return render_template("staff.html", admin=current_user.admin, staff=people)
 
 
 @app.route("/totw")
@@ -159,6 +166,25 @@ def totw():
     connection.commit()
     connection.close()
     return render_template("totw.html", admin=current_user.admin, totw=totw)
+
+@app.route("/totw_details")
+@login_required
+def totw_details():
+    _id = request.args.get("id")
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM totw WHERE id={}".format(_id))
+    totw = cursor.fetchone()
+    connection.commit()
+    connection.close()    
+    return render_template("totw_details.html", admin=current_user.admin, totw=totw)
+
+
+@app.route("/links")
+@login_required
+def links():
+    return render_template("links.html", admin=current_user.admin)
+
 
 @app.route("/submit")
 @login_required
@@ -366,6 +392,7 @@ def callback():
 
 @app.route("/logout")
 def logout():
+    
    # print(current_user)
     if current_user.is_authenticated:
         logout_user()
