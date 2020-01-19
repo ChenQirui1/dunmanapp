@@ -9,13 +9,12 @@
 <div id="main">
     <h1 align="center">Confirm delete Submission?</h1>
     <select name="group">
+        {% if group == 'announcement' %}
+          <option selected value="announcement">Announcements</option>
+        {% endif %}
 
         {% if group == 'competition' %}
         <option selected value="competition">Competitions</option>
-        {% endif %}
-
-        {% if group == 'announcement' %}
-        <option selected value="announcement">Announcements</option>
         {% endif %}
 
         {% if group == 'totw' %}

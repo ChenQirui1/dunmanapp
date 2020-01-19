@@ -225,12 +225,8 @@ img {
 
 /*DHS table for announcements*/
 
-div#delete2con {
-    width: 100%;
-}
-
 table#t01a {
-    width: 85vw;
+    width: 85%;
     background-color: #f1f1c1;
     border-collapse: collapse;
     border: 2px solid black;
