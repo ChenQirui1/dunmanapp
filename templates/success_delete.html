@@ -1,9 +1,12 @@
 {% extends "testbootstrap.html" %}
 
 {% block body %}
-<!-- Use any element to open the sidenav -->
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<h1>You have deleted it successfully</h1>
+<link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/submit.css')}}">
 
-<a href="/"><button class="Home">Back to home</button></a>
-{% endblock %}}
+<div class="group">
+    <h1 class="header">You have deleted it successfully</h1>
+
+    <a href="/"><button class="submit2">Back to home</button></a>
+</div>
+{% endblock %}
