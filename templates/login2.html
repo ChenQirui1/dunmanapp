@@ -4,14 +4,44 @@
   <title>DHS App</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/login2.css') }}">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+  <script>
+
+    function checkPC() {
+      var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      let isLandscape = w>h;
+      if (isLandscape) {
+        //Conditional script here
+        window.location.replace("/login-pc");
+      }
+    }
+    checkPC();
+  </script>
 </head>
-<div class="jumbotron jumbotron-fluid">
-    <h1 class="text-center">Welcome To The Dunman App</h1> 
-    <p class="text-center">Please sign in with your DHS email</p> 
-</div>
-<a href="/login" class="btn btn-primary btn-block" role="button">LOGIN</a>
+<body>
+
+  <style>
+    #rcorners:hover{
+      opacity: 1.0;
+    }
+  </style>
+  <div id="rcorners" class="center">
+    <h1>Welcome To The Mobile Dunman App</h1>
+    <a href="/login">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:25vw; height:25vw;">
+    </a>
+    <br>
+    <br>
+    <div class="login-button">
+      <a href="/login" class="button-text" role="button" font="Varela Round", id="button-text">Login</a>
+    </div>
+  </div>
+</body>
+
 </html>
