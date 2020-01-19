@@ -10,8 +10,8 @@ p{
 
 body {
     padding: 0px;
-    background: url("../images/login-pc-background.gif");
-    /*original: https://imgur.com/a/ASC7l7j*/
+    background: url("https://imgur.com/a/ASC7l7j");
+    /*original: ../images/login-pc-background.gif*/
     background-repeat: no-repeat;
     background-size: cover;
 }
