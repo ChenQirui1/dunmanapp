@@ -2,16 +2,14 @@
     font-size: 40px;
     color: black;
     text-align: center;
-    margin: 30px;
-    margin-bottom: 0px;
+    margin: 15px;
 }
 
 #searchbar {
-    width: 250px;
+    width: 350px;
     border: none;
     border-radius: 25px;
-    padding: 10px;
-    margin-top: 30px;
+    padding: 10px 20px;
     box-shadow: 0px 3px 5px lightgrey;
 }
 
@@ -33,16 +31,16 @@
 }
 
 .pic {
-    width: 150px;
-    height: 220px;
+    width: 120px;
+    height: 210px;
     flex-grow: 1;
-    margin: 30px;
+    margin: auto 30px;
 }
 
 .textgroup {
     flex-grow: 2;
     width: 400px;
-    margin: auto 0px;
+    margin: 10px 0px;
 }
 
 .flex-container {
@@ -82,4 +80,26 @@
     color: #6a6a6a;
     text-align: left;
     margin: 15px 40px;
+}
+
+@media only screen and (max-width: 600px) {
+    .box {
+        width: 94%;
+    }
+    .pic {
+        width: 100px;
+        height: 100px;
+        margin: auto 20px;
+    }
+    .name {
+        font-size: 24px;
+        margin: 15px 25px;
+    }
+    .dept,
+    .locker,
+    .staffroom,
+    .extension {
+        font-size: 18px;
+        margin: 15px 25px;
+    }
 }

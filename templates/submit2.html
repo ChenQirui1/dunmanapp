@@ -2,16 +2,17 @@
 
 {% block body %}
 <link href="https://fonts.googleapis.com/css?family=EB+Garamond|PT+Sans:400,400i,700,700i&subset=latin-ext" rel="stylesheet">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/submit.css')}}">
 <!-- Use any element to open the sidenav
 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<div id="main">
-    <h1 align="center">Update Submission</h1>
-</div>
+<h1 class="header">Submit an update</h1>
 
-<div class='container'>
+
+<div class='group'>
 <form action="/submission" method="post">
-  <h4>Submitting for {{group}}: </h4>
-    <select name="group">
+  <h4>Group:</h4>
+    <select class="dropdown" name="group">
         {% if group == 'competitions' %}
         <option selected value="competitions">Competitions</option>
         {% endif %}
@@ -21,9 +22,14 @@
         {% if group == 'morning' %}
         <option selected value="morning">Morning flagraising</option>
         {% endif %}
+        {% if group == 'totw' %}
+        <option selected value="totw">Thought of the week</option>
+        {% endif %}
     </select>
     <hr size=0 width=0%>
+    
     {% if group == 'morning' %}
+    <div class="radio">
     <h4>Year 1:</h4>
     <input type="radio" name="y1" value="Parade Square"> Parade Square <br>
     <input type="radio" name="y1" value="Classroom"> Classroom <br>
@@ -73,14 +79,15 @@
     <input type="radio" name="staff" value="Auditorium"> Auditorium <br>
     <input type="radio" name="staff" value="PAC"> PAC <br>
     <br>
+    </div>
     
     {% elif group == "announcements" %}
     <h4>Title: </h4>
-    <textarea rows="1" cols='40' name="title" required></textarea>
-    <br>
+    <textarea class="title" name="title" required></textarea>
+    <hr size=0 width=0%>
 
     <h4>Date of event:</h4>
-    <input type="date" name="eventdate" required>
+    <input class="date" type="date" name="eventdate" required>
     <hr size=0 width=0%>
 
     <h4>People involved:</h4>
@@ -91,36 +98,53 @@
     <input type="checkbox" name="people" value="Y5"> Year 5 <br>
     <input type="checkbox" name="people" value="Y6"> Year 6 <br>
     <input type="checkbox" name="people" value="Staff"> Staff <br>
-
     <hr size=0 width=0%>
 
     <h4>Details: </h4>
-    <textarea rows="4" cols='40' name="details" required></textarea>
+    <textarea class="details" name="details" required></textarea>
     <br>
 
     {% elif group == "competitions" %}
     <h4>Title: </h4>
-    <textarea rows="1" cols='40' name="title" required></textarea>
-    <br>
-
-    <h4>Date of event:</h4>
-    <input type="date" name="eventdate" required>
+    <textarea class="title" name="title" required></textarea>
     <hr size=0 width=0%>
 
-    <h4>People involved:</h4>
-    <select name="people">
+    <h4>Date of event:</h4>
+    <input class="date" type="date" name="eventdate" required>
+    <hr size=0 width=0%>
+
+    <h4>CCA:</h4>
+    <select class="dropdown" name="people">
+        <option disabled autofocus selected>CCA</option>
         {% for i in cca %}
         <option value="{{ i }}">{{ i }}</option>
         {% endfor %}
     </select>
+    <hr size=0 width=0%>
 
+    <h4>Details:</h4>
+    <textarea class="details" name="details" required></textarea>
+    <br>
+
+    {% elif group == "totw" %}
+    <h4>Title: </h4>
+    <textarea class="title" name="title" required></textarea>
+    <hr size=0 width=0%>
+
+    <h4>Date of event:</h4>
+    <input class="date" type="date" name="eventdate" required>
+    <hr size=0 width=0%>
+
+    <h4>Person who presented:</h4>
+    <textarea class="title" name="p_name" required></textarea>
+    <br>
     <hr size=0 width=0%>
 
     <h4>Details: </h4>
-    <textarea rows="4" cols='40' name="details" required></textarea>
+    <textarea class="details" name="details" required></textarea>
     <br>
     {% endif %}
-    <input type="submit" value="Submit">
+    <input class="submit" type="submit" value="Submit">
 </form>
 </div>
 

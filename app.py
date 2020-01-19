@@ -73,6 +73,10 @@ def index():
         return render_template("index.html", admin=current_user.admin, levels=levels, user_email=current_user.name)
     else:
         return render_template("login2.html")
+    
+@app.route('/login-pc')
+def login_pc():
+    return render_template("login-pc.html")
 
 
 @app.route("/about")
@@ -242,6 +246,21 @@ def submission():
                     (title, eventdate, people, details)
                 )
                 db.commit()
+        elif group == "totw":
+            title = request.form.get("title")
+            eventdate = request.form.get("eventdate")
+            details = request.form.get("details")
+            p_name = request.form.get("p_name")
+            p_name = p_name.title()
+            db = get_db()
+            db.execute(
+                "INSERT INTO totw (title, eventdate, details, person) "
+                "VALUES (?, ?, ?, ?)",
+                (title, eventdate, details, p_name)
+            )
+            db.commit()
+            
+            
         else:
             y1 = request.form.get("y1")
             y2 = request.form.get("y2")
