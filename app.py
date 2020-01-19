@@ -148,6 +148,17 @@ def announcement_details():
     connection.close()
     return render_template("announcement_details.html", admin=current_user.admin, announcement=announcement)
 
+@app.route("/staff")
+@login_required
+def staff():
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM staff ORDER BY name ASC")
+    people = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return render_template("staff.html", admin=current_user.admin, staff=people)
+
 
 @app.route("/totw")
 @login_required
