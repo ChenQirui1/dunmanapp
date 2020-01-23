@@ -591,11 +591,14 @@ pre code {
     }
 }
 
-@media (min-width: 768px) {
+@media only screen and (min-width: 600px) {
     h1,
     .h1 {
         font-size: 28px;
     }
+}
+
+@media (min-width: 768px) {
     .container {
         max-width: 720px;
     }
