@@ -312,9 +312,6 @@ table#t01a tr:hover {
 }
 
 @media only screen and (max-width: 600px) {
-    .h1 {
-        font-size: 26px;
-    }
     .box {
         width: 95%;
     }
