@@ -311,6 +311,13 @@ table#t01a tr:hover {
     text-align: center;
 }
 
+@media only screen and (min-width: 600px) {
+    h1,
+    .h1 {
+        font-size: 28px !important;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     .box {
         width: 95%;
