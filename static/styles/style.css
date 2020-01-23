@@ -225,6 +225,10 @@ img {
 
 /*DHS table for announcements*/
 
+div#delete2con {
+    width: 100%;
+}
+
 table#t01a {
     width: 85%;
     background-color: #f1f1c1;
@@ -308,6 +312,9 @@ table#t01a tr:hover {
 }
 
 @media only screen and (max-width: 600px) {
+    .h1 {
+        font-size: 26px;
+    }
     .box {
         width: 95%;
     }

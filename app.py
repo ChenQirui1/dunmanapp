@@ -332,11 +332,10 @@ def leaveform():
     eventend = request.form.get("eventend")
     details = request.form.get("details")
     url = "https://api.telegram.org/bot"
-    token = "1068383634:AAFdfC0w8wUFJ53POgLo-XSLE2SgqLMbv0I/sendMessage?chat_id="
-    ids = ["956428669",  "833906242"]
-    contents = "&parse_mode=Markdown&text={0} has applied for leave on {1}, from {2} to {3}. Reasons being {4}".format(current_user.email, eventdate, eventstart, eventend, details)
-    for id in ids:
-        requests.get(url+token+id+contents)
+    token = "1068383634:AAFdfC0w8wUFJ53POgLo-XSLE2SgqLMbv0I"
+    action = "/sendMessage?chat_id=956428669&parse_mode=Markdown"
+    contents = "&text={0} has applied for leave on {1}, from {2} to {3}. Reasons being {4}".format(current_user.email, eventdate, eventstart, eventend, details)
+    requests.get(url+token+action+contents)
     return render_template("success.html", admin=current_user.admin)
  
 @app.route("/login")
@@ -461,7 +460,7 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     #app.debug = False
     #for normal local testing use this run
-    #app.run(ssl_context="adhoc",host='127.0.0.1', port=port, debug=True)
+    app.run(ssl_context="adhoc",host='127.0.0.1', port=port, debug=True)
     #for deployment to heroku app use this
-    app.run(host='0.0.0.0', port=port, debug=True)
+    #app.run(host='0.0.0.0', port=port, debug=True)
     
