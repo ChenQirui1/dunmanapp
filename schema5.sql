@@ -3,5 +3,6 @@ CREATE TABLE totw (
   title TEXT NOT NULL,
   eventdate TEXT NOT NULL,
   details TEXT NOT NULL,
-  person TEXT NOT NULL
+  person TEXT NOT NULL,
+  op TEXT NOT NULL
 );

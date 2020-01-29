@@ -219,6 +219,7 @@ def submit2():
 def submission():
     if current_user.admin == 1:
         group = request.form.get("group")
+        op = current_user.email
         if group == "announcements" or group == "competitions":
             title = request.form.get("title")
             eventdate = request.form.get("eventdate")
@@ -231,9 +232,9 @@ def submission():
                 people = people[:-2]
                 db = get_db()
                 db.execute(
-                    "INSERT INTO announcement (title, eventdate, people, details) "
-                    "VALUES (?, ?, ?, ?)",
-                    (title, eventdate, people, details)
+                    "INSERT INTO announcement (title, eventdate, people, details, op) "
+                    "VALUES (?, ?, ?, ?, ?)",
+                    (title, eventdate, people, details, op)
                 )
                 db.commit()
                 
@@ -241,9 +242,9 @@ def submission():
                 people = request.form.get("people")
                 db = get_db()
                 db.execute(
-                    "INSERT INTO competition (title, eventdate, people, details) "
-                    "VALUES (?, ?, ?, ?)",
-                    (title, eventdate, people, details)
+                    "INSERT INTO competition (title, eventdate, people, details, op) "
+                    "VALUES (?, ?, ?, ?, ?)",
+                    (title, eventdate, people, details, op)
                 )
                 db.commit()
         elif group == "totw":
@@ -254,9 +255,9 @@ def submission():
             p_name = p_name.title()
             db = get_db()
             db.execute(
-                "INSERT INTO totw (title, eventdate, details, person) "
-                "VALUES (?, ?, ?, ?)",
-                (title, eventdate, details, p_name)
+                "INSERT INTO totw (title, eventdate, details, person, op) "
+                "VALUES (?, ?, ?, ?, ?)",
+                (title, eventdate, details, p_name, op)
             )
             db.commit()
             
@@ -273,8 +274,8 @@ def submission():
             db = get_db()
             db.execute("""
                 UPDATE flagraising
-                SET y1=?, y2=?, y3=?, y4=?, y5=?, y6=?, staff=?
-            """, (y1, y2, y3, y4, y5, y6, staff))
+                SET y1=?, y2=?, y3=?, y4=?, y5=?, y6=?, staff=?, op=?
+            """, (y1, y2, y3, y4, y5, y6, staff, op))
             db.commit()
 
         return render_template("success.html", admin=current_user.admin)
