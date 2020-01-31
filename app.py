@@ -189,7 +189,43 @@ def totw_details():
 def links():
     return render_template("links.html", admin=current_user.admin)
 
-
+@app.route("/secret")
+@login_required
+def secret():
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM announcement")
+    announcements = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM competition")
+    competitions = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM flagraising")
+    flagraising = cursor.fetchone()
+    connection.commit()
+    connection.close()
+    
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor() 
+    cursor.execute("SELECT * FROM totw")
+    totw = cursor.fetchall()
+    connection.commit()
+    connection.close()   
+    
+    print(announcements)
+    print(competitions)
+    print(flagraising)
+    print(totw)
+    return render_template("secret.html", admin=current_user.admin, announcements=announcements, competitions=competitions, flagraising=flagraising, totw=totw)
+ 
 @app.route("/submit")
 @login_required
 def submit():

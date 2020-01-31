@@ -222,6 +222,11 @@ img {
     }
 }
 
+div#secret {
+    width: 100%;
+    margin: auto;
+}
+
 
 /*DHS table for announcements*/
 
