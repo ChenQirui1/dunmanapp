@@ -13,11 +13,11 @@
 <form action="/submission" method="post">
   <h4>Group:</h4>
     <select class="dropdown" name="group">
-        {% if group == 'competitions' %}
-        <option selected value="competitions">Competitions</option>
-        {% endif %}
         {% if group == 'announcements' %}
         <option selected value="announcements">Announcements</option>
+        {% endif %}
+        {% if group == 'competitions' %}
+        <option selected value="competitions">Competitions</option>
         {% endif %}
         {% if group == 'morning' %}
         <option selected value="morning">Morning flagraising</option>

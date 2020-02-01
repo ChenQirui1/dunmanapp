@@ -189,7 +189,43 @@ def totw_details():
 def links():
     return render_template("links.html", admin=current_user.admin)
 
-
+@app.route("/secret")
+@login_required
+def secret():
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM announcement")
+    announcements = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM competition")
+    competitions = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM flagraising")
+    flagraising = cursor.fetchone()
+    connection.commit()
+    connection.close()
+    
+    connection = sqlite3.connect("sqlite_db")
+    cursor = connection.cursor() 
+    cursor.execute("SELECT * FROM totw")
+    totw = cursor.fetchall()
+    connection.commit()
+    connection.close()   
+    
+    print(announcements)
+    print(competitions)
+    print(flagraising)
+    print(totw)
+    return render_template("secret.html", admin=current_user.admin, announcements=announcements, competitions=competitions, flagraising=flagraising, totw=totw)
+ 
 @app.route("/submit")
 @login_required
 def submit():
@@ -219,6 +255,7 @@ def submit2():
 def submission():
     if current_user.admin == 1:
         group = request.form.get("group")
+        op = current_user.email
         if group == "announcements" or group == "competitions":
             title = request.form.get("title")
             eventdate = request.form.get("eventdate")
@@ -231,9 +268,9 @@ def submission():
                 people = people[:-2]
                 db = get_db()
                 db.execute(
-                    "INSERT INTO announcement (title, eventdate, people, details) "
-                    "VALUES (?, ?, ?, ?)",
-                    (title, eventdate, people, details)
+                    "INSERT INTO announcement (title, eventdate, people, details, op) "
+                    "VALUES (?, ?, ?, ?, ?)",
+                    (title, eventdate, people, details, op)
                 )
                 db.commit()
                 
@@ -241,9 +278,9 @@ def submission():
                 people = request.form.get("people")
                 db = get_db()
                 db.execute(
-                    "INSERT INTO competition (title, eventdate, people, details) "
-                    "VALUES (?, ?, ?, ?)",
-                    (title, eventdate, people, details)
+                    "INSERT INTO competition (title, eventdate, people, details, op) "
+                    "VALUES (?, ?, ?, ?, ?)",
+                    (title, eventdate, people, details, op)
                 )
                 db.commit()
         elif group == "totw":
@@ -254,9 +291,9 @@ def submission():
             p_name = p_name.title()
             db = get_db()
             db.execute(
-                "INSERT INTO totw (title, eventdate, details, person) "
-                "VALUES (?, ?, ?, ?)",
-                (title, eventdate, details, p_name)
+                "INSERT INTO totw (title, eventdate, details, person, op) "
+                "VALUES (?, ?, ?, ?, ?)",
+                (title, eventdate, details, p_name, op)
             )
             db.commit()
             
@@ -273,8 +310,8 @@ def submission():
             db = get_db()
             db.execute("""
                 UPDATE flagraising
-                SET y1=?, y2=?, y3=?, y4=?, y5=?, y6=?, staff=?
-            """, (y1, y2, y3, y4, y5, y6, staff))
+                SET y1=?, y2=?, y3=?, y4=?, y5=?, y6=?, staff=?, op=?
+            """, (y1, y2, y3, y4, y5, y6, staff, op))
             db.commit()
 
         return render_template("success.html", admin=current_user.admin)
@@ -460,7 +497,7 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     #app.debug = False
     #for normal local testing use this run
-    app.run(ssl_context="adhoc",host='127.0.0.1', port=port, debug=True)
+    #app.run(ssl_context="adhoc",host='127.0.0.1', port=port, debug=True)
     #for deployment to heroku app use this
-    #app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
     

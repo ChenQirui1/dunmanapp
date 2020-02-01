@@ -222,6 +222,11 @@ img {
     }
 }
 
+div#secret {
+    width: 100%;
+    margin: auto;
+}
+
 
 /*DHS table for announcements*/
 
@@ -309,6 +314,13 @@ table#t01a tr:hover {
     margin: 10px;
     margin-right: 10%;
     text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    h1,
+    .h1 {
+        font-size: 28px !important;
+    }
 }
 
 @media only screen and (max-width: 600px) {

@@ -6,5 +6,6 @@ CREATE TABLE flagraising (
   y4 TEXT,
   y5 TEXT,
   y6 TEXT,
-  staff TEXT
+  staff TEXT,
+  op TEXT NOT NULL
 );
