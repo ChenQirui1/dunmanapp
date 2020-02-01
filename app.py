@@ -72,7 +72,7 @@ def index():
         connection.close()
         return render_template("index.html", admin=current_user.admin, levels=levels, user_email=current_user.name)
     else:
-        return render_template("login2.html")
+        return render_template("login-phone.html")
     
 @app.route('/login-pc')
 def login_pc():
@@ -497,7 +497,7 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     #app.debug = False
     #for normal local testing use this run
-    #app.run(ssl_context="adhoc",host='127.0.0.1', port=port, debug=True)
+    app.run(ssl_context="adhoc",host='127.0.0.1', port=port, debug=True)
     #for deployment to heroku app use this
-    app.run(host='0.0.0.0', port=port, debug=True)
+    #app.run(host='0.0.0.0', port=port, debug=True)
     

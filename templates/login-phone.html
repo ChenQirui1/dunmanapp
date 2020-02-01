@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>DHS App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/login-phone.css')}}">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link href="https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro" rel='stylesheet'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <script>
+
+            function checkPC() {
+              var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+              var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+              let isLandscape = w>h;
+              if (isLandscape) {
+                //Conditional script here
+                window.location.replace("/login-pc");
+              }
+            }
+            checkPC();
+          </script>
+    </head>
+    
+    <body>
+        <div class="box">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" width="100" height="100" alt="DHS">
+            <h1 class="dapp">DUNMAN APP</h1>
+            <div class="line">
+                <h1 class="desc">Login using your<br>DHS email</h1>
+            </div>
+            
+            <a href="/login" style="text-decoration:none;">
+                <div class="box-bottom">
+                    <h1 id="login">Login</h1>
+                    <i class="material-icons" id="person">person</i>
+                </div>
+            </a>
+        </div>
+        
+    </body>
+    
+</html>
