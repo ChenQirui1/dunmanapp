@@ -11,15 +11,15 @@
     <select name="group">
 
         {% if group == 'announcement' %}
-        <option hidden selected value="announcement">Announcements</option>
+        <option selected value="announcement" hidden>Announcements</option>
         {% endif %}
 
         {% if group == 'competition' %}
-        <option hidden selected value="competition">Competitions</option>
+        <option hidden selected value="competition" hidden>Competitions</option>
         {% endif %}
 
         {% if group == 'totw' %}
-        <option hidden selected value="totw">Thought Of The Week</option>
+        <option hidden selected value="totw" hidden>Thought Of The Week</option>
         {% endif %}
 
     </select>
