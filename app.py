@@ -15,6 +15,7 @@ from flask_login import (
 )
 from oauthlib.oauth2 import WebApplicationClient
 import requests
+import psycopg2
 
 # Internal imports
 from db import init_db_command, get_db
@@ -44,12 +45,13 @@ def unauthorized():
 
 
 # Naive database setup
+'''
 try:
     init_db_command()
 except sqlite3.OperationalError:
     # Assume it's already been created
     pass
-
+'''
 #admin emails
 PERMS = ["ivan.ng.qifan@dhs.sg","gu.boyuan@dhs.sg","wee.jiawei.kevan@dhs.sg", "khoo.phaikchoo.carina@dhs.sg", "xun.shengdi@dhs.sg", "mathew.rithu.ann@dhs.sg", "liu.yixuan@dhs.sg", "tee.renwey@dhs.sg", "lim.valerie@dhs.sg"]
 
@@ -65,11 +67,28 @@ def load_user(user_id):
 @app.route("/")
 def index():
     if current_user.is_authenticated:
+        '''
         connection = sqlite3.connect("sqlite_db")
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM flagraising")
         levels = cursor.fetchall()
+        connection.commit()
         connection.close()
+        '''
+
+        connection = psycopg2.connect(user = "postgres",
+                                    password = "gby021229",
+                                    host = "127.0.0.1",
+                                    port = "5432",
+                                    database = "dunmanapp")
+        cursor = connection.cursor()
+        # Print PostgreSQL Connection properties
+        cursor.execute("SELECT * FROM flagraising")
+        levels = cursor.fetchall()
+        connection.commit()
+        cursor.close()
+        connection.close()
+
         return render_template("index.html", admin=current_user.admin, levels=levels, user_email=current_user.name)
     else:
         return render_template("login-phone.html")
@@ -87,6 +106,7 @@ def about():
 @app.route("/competition")
 @login_required
 def competition():
+    '''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM competition")
@@ -102,23 +122,64 @@ def competition():
             i += 1
     connection.commit()
     connection.close()
+    '''
+    connection = psycopg2.connect(user = "postgres",
+                                password = "gby021229",
+                                host = "127.0.0.1",
+                                port = "5432",
+                                database = "dunmanapp")
+    cursor = connection.cursor()
+    # Print PostgreSQL Connection properties
+    cursor.execute("SELECT * FROM competition")
+    competitions = cursor.fetchall()
+    now = datetime.now()
+    i = 0
+    while i < len(competitions):
+        eventdate = datetime.strptime(competitions[i][2], "%Y-%m-%d")
+        if now > eventdate + timedelta(days=1):
+            cursor.execute("DELETE FROM competition WHERE id={}".format(competitions[i][0]))
+            competitions.pop(i)
+        else:
+            i += 1
+    connection.commit()
+    cursor.close()
+    connection.close()
+    
     return render_template("competition.html", admin=current_user.admin, competitions=competitions)
 
 @app.route("/competition_details")
 @login_required
 def competition_details():
     _id = request.args.get("id")
+    
+    '''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM competition WHERE id={}".format(_id))
     competition = cursor.fetchone()
     connection.commit()
     connection.close()
+    
+    '''
+    connection = psycopg2.connect(user = "postgres",
+                                password = "gby021229",
+                                host = "127.0.0.1",
+                                port = "5432",
+                                database = "dunmanapp")
+    cursor = connection.cursor()
+    # Print PostgreSQL Connection properties
+    cursor.execute("SELECT * FROM competition WHERE id={}".format(_id))
+    competition = cursor.fetchone()
+    connection.commit()
+    cursor.close()
+    connection.close()
+    
     return render_template("competition_details.html", admin=current_user.admin, competition=competition)
 
 @app.route("/announcements")
 @login_required
 def announcements():
+    '''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM announcement")
@@ -134,53 +195,133 @@ def announcements():
             i += 1
     connection.commit()
     connection.close()
+    '''
+    connection = psycopg2.connect(user = "postgres",
+                                password = "gby021229",
+                                host = "127.0.0.1",
+                                port = "5432",
+                                database = "dunmanapp")
+    cursor = connection.cursor()
+    # Print PostgreSQL Connection properties
+    cursor.execute("SELECT * FROM announcement")
+    announcements = cursor.fetchall()
+    now = datetime.now()
+    i = 0
+    while i < len(announcements):
+        eventdate = datetime.strptime(announcements[i][2], "%Y-%m-%d")
+        if now > eventdate + timedelta(days=1):
+            cursor.execute("DELETE FROM announcement WHERE id={}".format(announcements[i][0]))
+            announcements.pop(i)
+        else:
+            i += 1
+    connection.commit()
+    cursor.close()
+    connection.close()
+    
     return render_template("announcements.html", admin=current_user.admin, announcements=announcements)
 
 @app.route("/announcement_details")
 @login_required
 def announcement_details():
     _id = request.args.get("id")
-    connection = sqlite3.connect("sqlite_db")
+
+    connection = psycopg2.connect(user = "postgres",
+                                password = "gby021229",
+                                host = "127.0.0.1",
+                                port = "5432",
+                                database = "dunmanapp")
     cursor = connection.cursor()
+    # Print PostgreSQL Connection properties
     cursor.execute("SELECT * FROM announcement WHERE id={}".format(_id))
     announcement = cursor.fetchone()
     connection.commit()
+    cursor.close()
     connection.close()
+    
+    
     return render_template("announcement_details.html", admin=current_user.admin, announcement=announcement)
 
 @app.route("/staff")
 @login_required
 def staff():
+    '''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM staff ORDER BY name ASC")
     people = cursor.fetchall()
     connection.commit()
     connection.close()
+    '''
+    connection = psycopg2.connect(user = "postgres",
+                                password = "gby021229",
+                                host = "127.0.0.1",
+                                port = "5432",
+                                database = "dunmanapp")
+    cursor = connection.cursor()
+    # Print PostgreSQL Connection properties
+    cursor.execute("SELECT * FROM staff ORDER BY name ASC")
+    people = cursor.fetchall()
+    connection.commit()
+    cursor.close()
+    connection.close()
+    
     return render_template("staff.html", admin=current_user.admin, staff=people)
 
 
 @app.route("/totw")
 @login_required
 def totw():
+    '''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM totw")
     totw = cursor.fetchall()
     connection.commit()
     connection.close()
+    '''
+
+    connection = psycopg2.connect(user = "postgres",
+                                password = "gby021229",
+                                host = "127.0.0.1",
+                                port = "5432",
+                                database = "dunmanapp")
+    cursor = connection.cursor()
+    # Print PostgreSQL Connection properties
+    cursor.execute("SELECT * FROM totw")
+    totw = cursor.fetchall()
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+    
     return render_template("totw.html", admin=current_user.admin, totw=totw)
 
 @app.route("/totw_details")
 @login_required
 def totw_details():
     _id = request.args.get("id")
+    '''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM totw WHERE id={}".format(_id))
     totw = cursor.fetchone()
     connection.commit()
     connection.close()    
+    '''
+        
+
+    connection = psycopg2.connect(user = "postgres",
+                                password = "gby021229",
+                                host = "127.0.0.1",
+                                port = "5432",
+                                database = "dunmanapp")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM totw WHERE id={}".format(_id))
+    totw = cursor.fetchone()
+    connection.commit()
+    cursor.close()
+    connection.close()
+    
     return render_template("totw_details.html", admin=current_user.admin, totw=totw)
 
 
@@ -192,6 +333,33 @@ def links():
 @app.route("/secret")
 @login_required
 def secret():
+    
+ 
+    connection = psycopg2.connect(user = "postgres",
+                                password = "gby021229",
+                                host = "127.0.0.1",
+                                port = "5432",
+                                database = "dunmanapp")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM announcement")
+    announcements = cursor.fetchall()
+    connection.commit()
+    
+    cursor.execute("SELECT * FROM competition")
+    competitions = cursor.fetchall()
+    connection.commit()
+    
+    cursor.execute("SELECT * FROM flagraising")
+    flagraising = cursor.fetchone()
+    connection.commit()
+    
+    cursor.execute("SELECT * FROM totw")
+    totw = cursor.fetchall()
+    connection.commit()
+    
+    cursor.close()
+    connection.close()
+    '''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM announcement")
@@ -219,6 +387,7 @@ def secret():
     totw = cursor.fetchall()
     connection.commit()
     connection.close()   
+    '''
     
     print(announcements)
     print(competitions)
@@ -266,6 +435,7 @@ def submission():
                 for a in people_list:
                     people = people + a + ", "
                 people = people[:-2]
+                '''
                 db = get_db()
                 db.execute(
                     "INSERT INTO announcement (title, eventdate, people, details, op) "
@@ -273,9 +443,25 @@ def submission():
                     (title, eventdate, people, details, op)
                 )
                 db.commit()
+                '''
+                
+               
+                connection = psycopg2.connect(user = "postgres",
+                                            password = "gby021229",
+                                            host = "127.0.0.1",
+                                            port = "5432",
+                                            database = "dunmanapp")
+                cursor = connection.cursor()
+                cursor.execute(
+                    "INSERT INTO announcement (title, eventdate, people, details, op) VALUES ('{}', '{}', '{}', '{}', '{}')".format(title, eventdate, people, details, op))
+                connection.commit()
+                cursor.close()
+                connection.close()
+                
                 
             elif group == "competitions":
                 people = request.form.get("people")
+                '''
                 db = get_db()
                 db.execute(
                     "INSERT INTO competition (title, eventdate, people, details, op) "
@@ -283,12 +469,27 @@ def submission():
                     (title, eventdate, people, details, op)
                 )
                 db.commit()
+                '''
+
+                connection = psycopg2.connect(user = "postgres",
+                                            password = "gby021229",
+                                            host = "127.0.0.1",
+                                            port = "5432",
+                                            database = "dunmanapp")
+                cursor = connection.cursor()
+                cursor.execute("INSERT INTO competition (title, eventdate, people, details, op) VALUES ('{}', '{}', '{}', '{}', '{}')".format(title, eventdate, people, details, op))
+                connection.commit()
+                cursor.close()
+                connection.close()
+                
+                
         elif group == "totw":
             title = request.form.get("title")
             eventdate = request.form.get("eventdate")
             details = request.form.get("details")
             p_name = request.form.get("p_name")
             p_name = p_name.title()
+            '''
             db = get_db()
             db.execute(
                 "INSERT INTO totw (title, eventdate, details, person, op) "
@@ -296,6 +497,19 @@ def submission():
                 (title, eventdate, details, p_name, op)
             )
             db.commit()
+            '''
+            
+             
+            connection = psycopg2.connect(user = "postgres",
+                                        password = "gby021229",
+                                        host = "127.0.0.1",
+                                        port = "5432",
+                                        database = "dunmanapp")
+            cursor = connection.cursor()
+            cursor.execute("INSERT INTO totw (title, eventdate, details, person, op) VALUES ('{}', '{}', '{}', '{}', '{}')".format(title, eventdate, details, p_name, op))
+            connection.commit()
+            cursor.close()
+            connection.close()
             
             
         else:
@@ -306,13 +520,26 @@ def submission():
             y5 = request.form.get("y5")
             y6 = request.form.get("y6")
             staff = request.form.get("staff")
-            
+            '''
             db = get_db()
             db.execute("""
                 UPDATE flagraising
                 SET y1=?, y2=?, y3=?, y4=?, y5=?, y6=?, staff=?, op=?
             """, (y1, y2, y3, y4, y5, y6, staff, op))
             db.commit()
+            '''
+            
+             
+            connection = psycopg2.connect(user = "postgres",
+                                        password = "gby021229",
+                                        host = "127.0.0.1",
+                                        port = "5432",
+                                        database = "dunmanapp")
+            cursor = connection.cursor()
+            cursor.execute(" UPDATE flagraising SET y1='{}', y2='{}', y3='{}', y4='{}', y5='{}', y6='{}', staff='{}', op='{}' ".format(y1, y2, y3, y4, y5, y6, staff, op))
+            connection.commit()
+            cursor.close()
+            connection.close()
 
         return render_template("success.html", admin=current_user.admin)
     else:
@@ -330,11 +557,28 @@ def delete():
 @login_required
 def delete2():
     group = request.form.get("group")
+    '''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM {}".format(group))
     details = cursor.fetchall()
     connection.close()
+    '''
+    
+
+    connection = psycopg2.connect(user = "postgres",
+                                password = "gby021229",
+                                host = "127.0.0.1",
+                                port = "5432",
+                                database = "dunmanapp")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM {}".format(group))
+    details = cursor.fetchall()
+    connection.commit()
+    cursor.close()
+    connection.close()
+    
+    
     if current_user.admin == 1:
         return render_template("delete2.html", admin=current_user.admin, group=group, details = details)
     else:
@@ -346,11 +590,27 @@ def deletion():
     todelete = request.form.get("todelete")
     group = request.form.get("group")
     if todelete is not None:
+        '''
         connection = sqlite3.connect("sqlite_db")
         cursor = connection.cursor()
         cursor.execute("DELETE FROM {} WHERE id={}".format(group, todelete))
         connection.commit()
         connection.close()
+        '''
+        
+        connection = psycopg2.connect(user = "postgres",
+                                    password = "gby021229",
+                                    host = "127.0.0.1",
+                                    port = "5432",
+                                    database = "dunmanapp")
+        cursor = connection.cursor()
+        cursor.execute("DELETE FROM {} WHERE id={}".format(group, todelete))
+        connection.commit()
+        cursor.close()
+        connection.close()
+        
+        
+        
         return render_template("success_delete.html", admin=current_user.admin)
     else:
         return render_template("failure_delete.html", admin=current_user.admin)
