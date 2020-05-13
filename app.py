@@ -76,11 +76,11 @@ def index():
         connection.close()
         '''
 
-        connection = psycopg2.connect(user = "postgres",
-                                    password = "gby021229",
-                                    host = "127.0.0.1",
+        connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                    password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                    host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                     port = "5432",
-                                    database = "dunmanapp")
+                                    database = "dd6ron4p756nq6")
         cursor = connection.cursor()
         # Print PostgreSQL Connection properties
         cursor.execute("SELECT * FROM flagraising")
@@ -123,11 +123,11 @@ def competition():
     connection.commit()
     connection.close()
     '''
-    connection = psycopg2.connect(user = "postgres",
-                                password = "gby021229",
-                                host = "127.0.0.1",
+    connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                 port = "5432",
-                                database = "dunmanapp")
+                                database = "dd6ron4p756nq6")
     cursor = connection.cursor()
     # Print PostgreSQL Connection properties
     cursor.execute("SELECT * FROM competition")
@@ -161,11 +161,11 @@ def competition_details():
     connection.close()
     
     '''
-    connection = psycopg2.connect(user = "postgres",
-                                password = "gby021229",
-                                host = "127.0.0.1",
+    connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                 port = "5432",
-                                database = "dunmanapp")
+                                database = "dd6ron4p756nq6")
     cursor = connection.cursor()
     # Print PostgreSQL Connection properties
     cursor.execute("SELECT * FROM competition WHERE id={}".format(_id))
@@ -196,11 +196,11 @@ def announcements():
     connection.commit()
     connection.close()
     '''
-    connection = psycopg2.connect(user = "postgres",
-                                password = "gby021229",
-                                host = "127.0.0.1",
+    connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                 port = "5432",
-                                database = "dunmanapp")
+                                database = "dd6ron4p756nq6")
     cursor = connection.cursor()
     # Print PostgreSQL Connection properties
     cursor.execute("SELECT * FROM announcement")
@@ -225,11 +225,11 @@ def announcements():
 def announcement_details():
     _id = request.args.get("id")
 
-    connection = psycopg2.connect(user = "postgres",
-                                password = "gby021229",
-                                host = "127.0.0.1",
+    connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                 port = "5432",
-                                database = "dunmanapp")
+                                database = "dd6ron4p756nq6")
     cursor = connection.cursor()
     # Print PostgreSQL Connection properties
     cursor.execute("SELECT * FROM announcement WHERE id={}".format(_id))
@@ -252,11 +252,11 @@ def staff():
     connection.commit()
     connection.close()
     '''
-    connection = psycopg2.connect(user = "postgres",
-                                password = "gby021229",
-                                host = "127.0.0.1",
+    connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                 port = "5432",
-                                database = "dunmanapp")
+                                database = "dd6ron4p756nq6")
     cursor = connection.cursor()
     # Print PostgreSQL Connection properties
     cursor.execute("SELECT * FROM staff ORDER BY name ASC")
@@ -280,11 +280,11 @@ def totw():
     connection.close()
     '''
 
-    connection = psycopg2.connect(user = "postgres",
-                                password = "gby021229",
-                                host = "127.0.0.1",
+    connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                 port = "5432",
-                                database = "dunmanapp")
+                                database = "dd6ron4p756nq6")
     cursor = connection.cursor()
     # Print PostgreSQL Connection properties
     cursor.execute("SELECT * FROM totw")
@@ -310,11 +310,11 @@ def totw_details():
     '''
         
 
-    connection = psycopg2.connect(user = "postgres",
-                                password = "gby021229",
-                                host = "127.0.0.1",
+    connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                 port = "5432",
-                                database = "dunmanapp")
+                                database = "dd6ron4p756nq6")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM totw WHERE id={}".format(_id))
     totw = cursor.fetchone()
@@ -335,11 +335,11 @@ def links():
 def secret():
     
  
-    connection = psycopg2.connect(user = "postgres",
-                                password = "gby021229",
-                                host = "127.0.0.1",
+    connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                 port = "5432",
-                                database = "dunmanapp")
+                                database = "dd6ron4p756nq6")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM announcement")
     announcements = cursor.fetchall()
@@ -446,11 +446,11 @@ def submission():
                 '''
                 
                
-                connection = psycopg2.connect(user = "postgres",
-                                            password = "gby021229",
-                                            host = "127.0.0.1",
+                connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                            password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                            host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                             port = "5432",
-                                            database = "dunmanapp")
+                                            database = "dd6ron4p756nq6")
                 cursor = connection.cursor()
                 cursor.execute(
                     "INSERT INTO announcement (title, eventdate, people, details, op) VALUES ('{}', '{}', '{}', '{}', '{}')".format(title, eventdate, people, details, op))
@@ -471,11 +471,11 @@ def submission():
                 db.commit()
                 '''
 
-                connection = psycopg2.connect(user = "postgres",
-                                            password = "gby021229",
-                                            host = "127.0.0.1",
+                connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                            password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                            host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                             port = "5432",
-                                            database = "dunmanapp")
+                                            database = "dd6ron4p756nq6")
                 cursor = connection.cursor()
                 cursor.execute("INSERT INTO competition (title, eventdate, people, details, op) VALUES ('{}', '{}', '{}', '{}', '{}')".format(title, eventdate, people, details, op))
                 connection.commit()
@@ -500,11 +500,11 @@ def submission():
             '''
             
              
-            connection = psycopg2.connect(user = "postgres",
-                                        password = "gby021229",
-                                        host = "127.0.0.1",
+            connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                        password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                        host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                         port = "5432",
-                                        database = "dunmanapp")
+                                        database = "dd6ron4p756nq6")
             cursor = connection.cursor()
             cursor.execute("INSERT INTO totw (title, eventdate, details, person, op) VALUES ('{}', '{}', '{}', '{}', '{}')".format(title, eventdate, details, p_name, op))
             connection.commit()
@@ -530,11 +530,11 @@ def submission():
             '''
             
              
-            connection = psycopg2.connect(user = "postgres",
-                                        password = "gby021229",
-                                        host = "127.0.0.1",
+            connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                        password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                        host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                         port = "5432",
-                                        database = "dunmanapp")
+                                        database = "dd6ron4p756nq6")
             cursor = connection.cursor()
             cursor.execute(" UPDATE flagraising SET y1='{}', y2='{}', y3='{}', y4='{}', y5='{}', y6='{}', staff='{}', op='{}' ".format(y1, y2, y3, y4, y5, y6, staff, op))
             connection.commit()
@@ -566,11 +566,11 @@ def delete2():
     '''
     
 
-    connection = psycopg2.connect(user = "postgres",
-                                password = "gby021229",
-                                host = "127.0.0.1",
+    connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                 port = "5432",
-                                database = "dunmanapp")
+                                database = "dd6ron4p756nq6")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM {}".format(group))
     details = cursor.fetchall()
@@ -598,11 +598,11 @@ def deletion():
         connection.close()
         '''
         
-        connection = psycopg2.connect(user = "postgres",
-                                    password = "gby021229",
-                                    host = "127.0.0.1",
+        connection = psycopg2.connect(user = "ehguposgnxoqgt",
+                                    password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
+                                    host = "ec2-3-222-30-53.compute-1.amazonaws.com",
                                     port = "5432",
-                                    database = "dunmanapp")
+                                    database = "dd6ron4p756nq6")
         cursor = connection.cursor()
         cursor.execute("DELETE FROM {} WHERE id={}".format(group, todelete))
         connection.commit()
