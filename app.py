@@ -53,7 +53,7 @@ except sqlite3.OperationalError:
     pass
 '''
 #admin emails
-PERMS = ["ivan.ng.qifan@dhs.sg","gu.boyuan@dhs.sg","wee.jiawei.kevan@dhs.sg", "khoo.phaikchoo.carina@dhs.sg", "xun.shengdi@dhs.sg", "mathew.rithu.ann@dhs.sg", "liu.yixuan@dhs.sg", "tee.renwey@dhs.sg", "lim.valerie@dhs.sg"]
+PERMS = ["ivan.ng.qifan@dhs.sg","gu.boyuan@dhs.sg","wee.jiawei.kevan@dhs.sg", "khoo.phaikchoo.carina@dhs.sg", "xun.shengdi@dhs.sg", "mathew.rithu.ann@dhs.sg", "liu.yixuan@dhs.sg", "tee.renwey@dhs.sg", "lim.valerie@dhs.sg", "chan.weiying.chloe.sarah@dhs.sg", "tan.weeen.timothy@dhs.sg","lee.kaihng.lukas@dhs.sg"]
 
 # OAuth2 client setup
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
