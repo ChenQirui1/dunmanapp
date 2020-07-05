@@ -366,7 +366,7 @@ def secret():
     announcements = cursor.fetchall()
     connection.commit()
     connection.close()
-    '''
+    ''''''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM competition")
@@ -380,7 +380,7 @@ def secret():
     flagraising = cursor.fetchone()
     connection.commit()
     connection.close()
-    '''
+    ''''''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor() 
     cursor.execute("SELECT * FROM totw")
