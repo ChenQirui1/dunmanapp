@@ -18,9 +18,9 @@
         <option selected value="competition" hidden>Competitions</option>
         {% endif %}
 
-        {% if group == 'totw' %}
+        <!--{% if group == 'totw' %}
         <option selected value="totw" hidden>Thought Of The Week</option>
-        {% endif %}
+        {% endif %}-->
 
     </select>
 </div>
@@ -81,11 +81,11 @@
 
     </table>
     {% endif %}
-
+    <!--
     {% if group == 'totw' %}
     <table id="t01a">
       <tr>
-        <!--Table for announcements-->
+        Table for announcements
         <th>Choose!!</th>
         <th>Title</th>
         <th>Date</th>
@@ -108,7 +108,7 @@
       {% endfor %}
 
     </table>
-    {% endif %}
+    {% endif %}-->
 
     <input type="submit" value="Submit">
     <a href = "/delete"><button type="button">Back</button></a>

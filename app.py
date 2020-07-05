@@ -267,18 +267,18 @@ def staff():
     
     return render_template("staff.html", admin=current_user.admin, staff=people)
 
-
+'''
 @app.route("/totw")
 @login_required
 def totw():
-    '''
+    
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM totw")
     totw = cursor.fetchall()
     connection.commit()
     connection.close()
-    '''
+    
 
     connection = psycopg2.connect(user = "ehguposgnxoqgt",
                                 password = "4ae2a7ab4f8c57aef3a1141e4969c89586bf2c34bf4e26eb1b57032299f9da04",
@@ -300,14 +300,14 @@ def totw():
 @login_required
 def totw_details():
     _id = request.args.get("id")
-    '''
+    
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM totw WHERE id={}".format(_id))
     totw = cursor.fetchone()
     connection.commit()
     connection.close()    
-    '''
+    
         
 
     connection = psycopg2.connect(user = "ehguposgnxoqgt",
@@ -324,7 +324,7 @@ def totw_details():
     
     return render_template("totw_details.html", admin=current_user.admin, totw=totw)
 
-
+'''
 @app.route("/links")
 @login_required
 def links():
@@ -352,21 +352,21 @@ def secret():
     cursor.execute("SELECT * FROM flagraising")
     flagraising = cursor.fetchone()
     connection.commit()
-    
+    '''
     cursor.execute("SELECT * FROM totw")
     totw = cursor.fetchall()
     connection.commit()
     
     cursor.close()
     connection.close()
-    '''
+    ''''''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM announcement")
     announcements = cursor.fetchall()
     connection.commit()
     connection.close()
-    
+    '''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM competition")
@@ -380,7 +380,7 @@ def secret():
     flagraising = cursor.fetchone()
     connection.commit()
     connection.close()
-    
+    '''
     connection = sqlite3.connect("sqlite_db")
     cursor = connection.cursor() 
     cursor.execute("SELECT * FROM totw")
@@ -392,8 +392,7 @@ def secret():
     print(announcements)
     print(competitions)
     print(flagraising)
-    print(totw)
-    return render_template("secret.html", admin=current_user.admin, announcements=announcements, competitions=competitions, flagraising=flagraising, totw=totw)
+    return render_template("secret.html", admin=current_user.admin, announcements=announcements, competitions=competitions, flagraising=flagraising)
  
 @app.route("/submit")
 @login_required
@@ -482,14 +481,14 @@ def submission():
                 cursor.close()
                 connection.close()
                 
-                
+            '''        
         elif group == "totw":
             title = request.form.get("title")
             eventdate = request.form.get("eventdate")
             details = request.form.get("details")
             p_name = request.form.get("p_name")
             p_name = p_name.title()
-            '''
+            
             db = get_db()
             db.execute(
                 "INSERT INTO totw (title, eventdate, details, person, op) "
@@ -497,7 +496,7 @@ def submission():
                 (title, eventdate, details, p_name, op)
             )
             db.commit()
-            '''
+            
             
              
             connection = psycopg2.connect(user = "ehguposgnxoqgt",
@@ -510,7 +509,7 @@ def submission():
             connection.commit()
             cursor.close()
             connection.close()
-            
+        ''' 
             
         else:
             y1 = request.form.get("y1")
